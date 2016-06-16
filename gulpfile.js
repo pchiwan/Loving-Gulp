@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var del = require('del');
 var minify = require('gulp-minify');
 var del = require('del');
 var modify = require('gulp-modify');
@@ -13,7 +12,6 @@ var jsToCopy = [
     './src/**/*.js',
     './js/**/*.js',
 ];
-
 
 gulp.task('default', ['copyJs'], function () {
     // the base option sets the relative root for the set of files,
@@ -30,6 +28,7 @@ gulp.task('default', ['copyJs'], function () {
         }))
         .pipe(gulp.dest('build/Release'));
 });
+
 gulp.task('copyJs', ['cleanReleaseFolder'], function () {
     return gulp.src(jsToCopy, { base: './' })
         .pipe(minify({
@@ -37,6 +36,7 @@ gulp.task('copyJs', ['cleanReleaseFolder'], function () {
         }))
         .pipe(gulp.dest('build/Release'));
 });
+
 gulp.task('cleanReleaseFolder', function () {
     return del.sync('./build/Release/**');
 });
